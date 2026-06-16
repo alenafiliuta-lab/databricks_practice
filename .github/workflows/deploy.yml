@@ -3,7 +3,7 @@ name: Deploy Databricks Asset Bundle
 on:
   push:
     branches:
-      - main # Запуск при каждом пуше в ветку main
+      - main
 
 jobs:
   deploy:
@@ -11,15 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Скачиваем код репозитория на runner
+      # 1. Скачиваем код репозитория (Обновлено до v4)
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Устанавливаем Databricks CLI
+      # 2. Устанавливаем Node.js 24, чтобы убрать любые предупреждения депрекации
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node_node_version: '24'
+
+      # 3. Устанавливаем Databricks CLI
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
 
-      # 3. Деплоим Asset Bundle в окружение dev
+      # 4. Деплоим Asset Bundle в окружение dev
       - name: Deploy Asset Bundle
         run: |
           databricks bundle deploy -t dev
