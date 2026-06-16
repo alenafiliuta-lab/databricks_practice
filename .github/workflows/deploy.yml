@@ -32,7 +32,7 @@ jobs:
       # 4. Запускаем деплой бандла
       - name: Deploy Asset Bundle
         run: |
-          databricks bundle deploy -t dev
+          databricks bundle deploy -t dev --destroy-all-first
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
