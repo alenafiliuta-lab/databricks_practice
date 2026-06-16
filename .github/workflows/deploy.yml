@@ -10,22 +10,26 @@ jobs:
     name: Deploy DAB to Dev Workspace
     runs-on: ubuntu-latest
 
+    # Принудительно запускаем все шаги на Node 24, как требует GitHub с 16 июня 2026
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
     steps:
-      # 1. Скачиваем код репозитория (Обновлено до v4)
+      # 1. Скачиваем код вашего репозитория
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Устанавливаем Node.js 24, чтобы убрать любые предупреждения депрекации
+      # 2. Настраиваем Node.js 24 (исправлена опечатка в node-version)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node_node_version: '24'
+          node-version: '24'
 
-      # 3. Устанавливаем Databricks CLI
+      # 3. Устанавливаем официальный Databricks CLI
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
 
-      # 4. Деплоим Asset Bundle в окружение dev
+      # 4. Запускаем деплой бандла
       - name: Deploy Asset Bundle
         run: |
           databricks bundle deploy -t dev
