@@ -1,12 +1,11 @@
 bundle:
   name: medallion-architecture-bundle
 
+# Правильное подключение файлов джоб из папки resources
 resources:
-  include:
-    - resources/*.yml
+  - resources/*.yml
 
+# Настройка окружения dev
 targets:
   dev:
     default: true
-    workspace:
-      host: ${bundle.target}
