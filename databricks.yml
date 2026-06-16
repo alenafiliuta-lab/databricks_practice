@@ -8,10 +8,4 @@ resources:
 targets:
   dev:
     default: true
-    resources:
-      jobs:
-        # Подключаем конфигурации джоб напрямую по их ключам из файлов ресурсов
-        init_infrastructure_job: ${resources.jobs.init_infrastructure_job}
-        bronze_medallion_job: ${resources.jobs.bronze_medallion_job}
-        silver_medallion_job: ${resources.jobs.silver_medallion_job}
-        gold_medallion_job: ${resources.jobs.gold_medallion_job}
+   
