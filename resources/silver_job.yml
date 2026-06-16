@@ -2,6 +2,9 @@ resources:
   jobs:
     silver_medallion_job:
       name: "[DEV] Silver ETL Job"
+      permissions:
+        - user_name: "alena.filiuta@innowise.com"
+          permission_level: CAN_MANAGE
       tasks:
         - task_key: run_silver_notebook
           notebook_task:
