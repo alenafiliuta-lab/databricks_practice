@@ -1,0 +1,12 @@
+bundle:
+  name: medallion-architecture-bundle
+
+resources:
+  include:
+    - resources/*.yml
+
+targets:
+  dev:
+    default: true
+    workspace:
+      host: ${bundle.target}

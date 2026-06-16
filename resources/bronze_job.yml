@@ -1,0 +1,12 @@
+resources:
+  jobs:
+    bronze_medallion_job:
+      name: "[DEV] Bronze ETL Job"
+      tasks:
+        - task_key: run_bronze_notebook
+          notebook_task:
+            notebook_path: ../src/02_bronze_streaming_job.py
+          new_cluster:
+            spark_version: 14.3.x-scala2.12
+            node_type_id: Standard_D4s_v5 
+            num_workers: 1

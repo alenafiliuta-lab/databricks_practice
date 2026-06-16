@@ -1,0 +1,22 @@
+resources:
+  jobs:
+    init_infrastructure_job:
+      name: "[DEV] Init Catalog and Simulator"
+      tasks:
+        - task_key: create_catalog_and_schemas
+          notebook_task:
+            notebook_path: ../src/00_create_catalog_and_schemas.py 
+          new_cluster:
+            spark_version: 14.3.x-scala2.12
+            node_type_id: Standard_D4s_v5
+            num_workers: 1
+
+        - task_key: run_simulator
+          depends_on:
+            - task_key: create_catalog_and_schemas 
+          notebook_task:
+            notebook_path: ../src/01_data_emulator.py 
+          new_cluster:
+            spark_version: 14.3.x-scala2.12
+            node_type_id: Standard_D4s_v5
+            num_workers: 1

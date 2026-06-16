@@ -1,0 +1,28 @@
+name: Deploy Databricks Asset Bundle
+
+on:
+  push:
+    branches:
+      - main # Запуск при каждом пуше в ветку main
+
+jobs:
+  deploy:
+    name: Deploy DAB to Dev Workspace
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Скачиваем код репозитория на runner
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Устанавливаем Databricks CLI
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@v1
+
+      # 3. Деплоим Asset Bundle в окружение dev
+      - name: Deploy Asset Bundle
+        run: |
+          databricks bundle deploy -t dev
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
