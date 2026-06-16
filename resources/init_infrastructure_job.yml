@@ -2,6 +2,9 @@ resources:
   jobs:
     init_infrastructure_job:
       name: "[DEV] Init Catalog and Simulator"
+      permissions:
+        - user_name: "alena.filiuta@innowise.com"
+          permission_level: CAN_MANAGE
       tasks:
         - task_key: create_catalog_and_schemas
           notebook_task:
