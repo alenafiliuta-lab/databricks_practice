@@ -17,7 +17,7 @@ jobs:
 
       # 2. Устанавливаем Databricks CLI
       - name: Setup Databricks CLI
-        uses: databricks/setup-cli@v1
+        uses: databricks/setup-cli@v0
 
       # 3. Деплоим Asset Bundle в окружение dev
       - name: Deploy Asset Bundle
